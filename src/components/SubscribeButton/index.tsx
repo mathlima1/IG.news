@@ -14,7 +14,7 @@ export default function SubscribeButton({ priceId }: SubscribeButtonProps) {
             signIn('github');
             return;
         }
-        #ESCREVE O QUE FEZ RELACIONADO AO SUBSCRIBE BUTTON
+
         try {
             const response = await api.post('/subscribe')
 
