@@ -3,7 +3,7 @@ import { Readable } from 'stream'
 import Stripe from 'stripe'
 import { stripe } from '../../services/stripe'
 import { saveSubscription } from './_lib/manageSubscription'
-
+//A funcção Buffer é responsavel por traduzi as "streams" do stripe 
 async function buffer(readable: Readable) {
     const chunks = [];
 
@@ -15,19 +15,25 @@ async function buffer(readable: Readable) {
 
     return Buffer.concat(chunks);
 }
-
+//Resetamos o BodyParse do next, para que ele não trave com a leitura de streams, é possivel ver essa dica na documentação do next
 export const config = {
     api: {
         bodyParser: false
     }
 }
 
+/* Comentamos os eventos  relevantes que queremos ouvir
+Completar o checkout;
+Ter a inscrição atualizada;
+Ter a inscrição deletada */
 const relevantEvents = new Set([
     'checkout.session.completed',
     'customer.subscription.updated',
     'customer.subscription.deleted',
 ])
 
+
+//Função responsavel de verificar qual evento de webhook estamos ouvindo 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
         const buf = await buffer(req); //Nossso array com a steam "traduzida"
