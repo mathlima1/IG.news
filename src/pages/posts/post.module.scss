@@ -23,7 +23,25 @@
         line-height: 2rem;
         font-size: 1.125rem;
         color: var(--gray-100);
-
+        pre{
+            padding: 1.5rem;
+            border-radius: 1rem;
+            background: var(--gray-800);
+            line-height: 1.4;
+            margin: 0 0 25px;
+            overflow-x: auto;
+            white-space: pre;
+            word-spacing: normal;
+            word-break: normal;
+            word-wrap: normal;
+            line-height: 1.5;
+            -moz-tab-size: 2;
+            -o-tab-size: 2;
+            tab-size: 2;
+            -webkit-hyphens: none;
+            -ms-hyphens: none;
+            hyphens: none;
+        }
         p, ul{
             margin: 1.5rem 0;
         }
